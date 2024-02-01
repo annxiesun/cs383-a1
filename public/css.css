@@ -1,0 +1,29 @@
+.border-l {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 50px;
+  z-index: 200;
+  background-color: black;
+}
+
+.border-r {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50px;
+  z-index: 200;
+  background-color: black;
+}
+
+
+body { cursor: none; }
+
+.canvas {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
