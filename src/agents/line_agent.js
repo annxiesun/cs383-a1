@@ -17,9 +17,9 @@ export class LineAgent {
 
 
   initialize() {
-    this.angle = Math.floor(Math.random() * 10);
+    this.angle = Math.floor((Math.random() * 40)+ 5);
     this.slope = this.getSlope(this.angle)
-    this.line = new Line(this.factory, this.slope,  Math.floor(Math.random() * OPTIONS.height))
+    this.line = new Line(this.factory, this.slope,  Math.floor(Math.random() * window.innerHeight))
   }
 
   reset() {}
@@ -29,8 +29,8 @@ export class LineAgent {
   }
 
   draw(p) {
-    p.stroke(255, 204, 0);
-    p.strokeWeight(10);
+    p.stroke(43, 23, 100);
+    p.strokeWeight(2);
     p.line(this.line.x_intercept, this.line.y_intercept, this.line.x, this.line.y)
     p.strokeWeight(0);
   }

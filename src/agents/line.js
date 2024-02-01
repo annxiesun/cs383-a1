@@ -12,9 +12,13 @@ export class Line {
   }
 
   getNext() {
-    this.x += 8
+    this.x += 10
     this.y  = (this.x * this.m) + this.y_intercept
-    if(this.y <= 0 || this.y >= OPTIONS.height || this.x > 600) {
+    if(this.y <= 0 || this.y >= window.innerHeight || this.x > window.innerWidth) {
+      if(this.x < 50) {
+        this.factory.nextAgent()
+        return
+      }
       this.factory.onFinishActiveAgent()
     }
   }

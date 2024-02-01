@@ -1,11 +1,9 @@
 import { LineAgentFactory } from "./agents/agent_factory"
-import findIntersections from "bentley-ottman-sweepline";
-import { extract_cycles } from "./cycles";
+import { COLORS } from "./colors";
 
 export const OPTIONS = {
   agentNum: 20,
-  width: 600,
-  height: 600,
+  phase: 0
 }
 
 // Exporting a function called 'mySketch'
@@ -17,19 +15,14 @@ export const mySketch = (p) => {
   
   }
   p.setup = () => {
-  
-    p.createCanvas(OPTIONS.width, OPTIONS.height);
-
-    // add params to a GUI
+    console.log(window.p5)
+    p.createCanvas(window.innerWidth, window.innerHeight);
 
     p.frameRate(30);
 
-    // load last params
-    // s = getItem("params")
-
-    // setup the window and create the agents
-    p.background(250);
-    p.colorMode("HSB", 360, 100,100,100)
+    p.colorMode(p.HSB)
+    const bg = COLORS[OPTIONS.phase][0]
+    p.background(bg[0], bg[1], bg[2]);
     p.createAgents()
     p.noStroke()
     
@@ -38,14 +31,6 @@ export const mySketch = (p) => {
   p.draw = () => {
     lineAgentFactory.updateAgents()
     lineAgentFactory.drawAgents()
-  
-    //   fill(30,40,50)
-    // beginShape(TESS);
-    // vertex(0,20);
-    // vertex(500,50);
-    // vertex(400, 500);
-    // vertex(200,500);
-    // endShape(CLOSE);
   }
   
   p.keyPressed = () => {
@@ -73,17 +58,4 @@ export const mySketch = (p) => {
   const vertices = [{x: 0, y: 0, adj: []}, {x: 5, y: 5, adj: []}, {x: 5, y: 0, adj: []}, {x: 5, y: 2, adj: []}];
 
   // edges just define adjacent vertices for each vertex
-  
-  p.mousePressed = () => {
-    [ [1,2], [1,3], [2,0], [2,3] ].forEach( (i) => {
-      const [i1,i2]= i
-        let v1 = vertices[i1], v2 = vertices[i2];
-        v1.adj.push(v2);
-        v2.adj.push(v1);
-        console.log(v1,v2)
-    });
-  console.log(vertices)
-  let result = extract_cycles(vertices);
-  console.log(result)
-  }
 }
